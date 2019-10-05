@@ -1,6 +1,22 @@
-.card-panel
+.card-panel.z-depth-3{style: 'margin-top: 0;'}
   .card-content
-    .card-title.valign-wrapper Cadastro
+    .card-title.flow-text Cadastro
+    .row
+      = simple_form_for @park, class: 'col s12' do |f|
+        .row 
+          .input-field.col.s6
+            = f.input :tipo_veiculo, collection: Park.tipo_veiculos.to_a.collect {|r| [r[0].titleize, r[0]] }, include_blank: false, prompt: 'Selecione o tipo'
+          .input-field.col.s6
+            = f.input :placa, placeholder: 'XXX-1234', class: 'validate'
+          
+        .row
+          .input-field.col.s4
+            = f.input :marca, placeholder: 'Ex: Ford', class: 'validate'
+          .input-field.col.s4
+            = f.input :modelo, placeholder: 'Ex: Fiesta', class: 'validate'
+          .input-field.col.s4
+            = f.input :cor, placeholder: 'Ex: vermelho', class: 'validate'
 
-    = simple_form_for @park do |f|
-      = f.input :placa
+        %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
+          Salvar
+          %i.material-icons.right send

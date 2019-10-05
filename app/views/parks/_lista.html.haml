@@ -1,4 +1,4 @@
-%table.striped.highlight.centered.responsive-table
+%table.striped.highlight.centered.responsive-table.z-depth-3
   %thead
     %tr
       %th Tipo
@@ -8,6 +8,8 @@
       %th Cor
       %th Entrada
       %th Saída
+      %th Pago
+      %th Situação
       %th Opções
   %tbody
     - @parks.each do |park|
@@ -19,15 +21,17 @@
         %td= park.cor
         %td= park.chegada
         %td= park.saida
+        %td= park.pgto ? 'OK' : '!'
+        %td= park.situacao.titleize
         %td
           %ul#opcoes.dropdown-content
             %li
               %a{:href => "#!"}
-                %i.material-icons> mode_edit
+                %i.material-icons mode_edit
                 Alterar
             %li
               %a{:href => "#!"}
-                %i.material-icons> delete
-                Excluir
+                %i.material-icons close
+                Cancelar
           %a.dropdown-trigger.btn-small{"data-target" => "opcoes", :href => "#"}
             %i.material-icons menu
