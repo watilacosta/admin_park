@@ -1,0 +1,33 @@
+%table.striped.highlight.centered.responsive-table
+  %thead
+    %tr
+      %th Tipo
+      %th Placa
+      %th Marca
+      %th Modelo
+      %th Cor
+      %th Entrada
+      %th Saída
+      %th Opções
+  %tbody
+    - @parks.each do |park|
+      %tr
+        %td= park.tipo_veiculo.titleize
+        %td= park.placa
+        %td= park.marca
+        %td= park.modelo
+        %td= park.cor
+        %td= park.chegada
+        %td= park.saida
+        %td
+          %ul#opcoes.dropdown-content
+            %li
+              %a{:href => "#!"}
+                %i.material-icons> mode_edit
+                Alterar
+            %li
+              %a{:href => "#!"}
+                %i.material-icons> delete
+                Excluir
+          %a.dropdown-trigger.btn-small{"data-target" => "opcoes", :href => "#"}
+            %i.material-icons menu

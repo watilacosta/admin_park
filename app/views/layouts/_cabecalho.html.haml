@@ -1,0 +1,26 @@
+%ul#dropdown1.dropdown-content
+  %li
+    %a{:href => "#!"} Diários
+  %li
+    %a{:href => "#!"} Mensais
+  %li.divider
+  %li
+    %a{:href => "#!"} Anuais
+%nav
+  .container
+    .nav-wrapper
+      = link_to 'Admin Park', root_path, class: 'brand-logo'
+      - if current_usuario
+        %ul.right.hide-on-med-and-down
+          %li
+            %a{:href => "sass.html"} Perfil
+          %li
+            %a.dropdown-trigger{"data-target" => "dropdown1", :href => "#!"}
+              Relatórios
+              %i.material-icons.right arrow_drop_down 
+
+          %li
+            = link_to destroy_usuario_session_path, method: :delete, data: {confirm: 'Deseja encerrar esta sessão?'}, class: 'waves-effect waves-light btn-small', title: 'Sair' do
+              Sair
+              %i.material-icons.right send
+
