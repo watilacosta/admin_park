@@ -1,16 +1,15 @@
 class ParksController < ApplicationController
+
   def index
     @parks = Park.all
-    @park  = Park.new(chegada: Time.now, 
-                     registrado_por: current_usuario.id)
+    @park  = Park.new
   end
 
   def create
-    
-    binding.pry
-    
-    @park = Park.new(park_params)
-
+    @park                = Park.new(park_params)
+    @park.chegada        = Time.now
+    @park.registrado_por = current_usuario.id 
+  
     if @park.save!
       redirect_to root_path
     else

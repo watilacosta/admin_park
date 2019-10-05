@@ -2,7 +2,7 @@
   .card-content
     .card-title.flow-text Cadastro
     .row
-      = simple_form_for @park, class: 'col s12' do |f|
+      = simple_form_for(@park, class: 'col s12') do |f|
         .row 
           .input-field.col.s6
             = f.input :tipo_veiculo, collection: Park.tipo_veiculos.to_a.collect {|r| [r[0].titleize, r[0]] }, include_blank: false, prompt: 'Selecione o tipo'
@@ -17,6 +17,18 @@
           .input-field.col.s4
             = f.input :cor, placeholder: 'Ex: vermelho', class: 'validate'
 
-        %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
+        .row 
+          .input-field.col.s6
+            .switch
+              %label
+                Pago?
+                = f.input_field :pgto, as: :boolean, boolean_style: :inline
+                %span.lever
+        
+          .input-field.col.s6
+            = f.input :situacao, collection: Park.situacoes.to_a.collect {|r| [r[0].titleize, r[0]] }, include_blank: false, prompt: 'Situação do Park'
+
+
+        = f.button :button, class: 'btn waves-effect waves-light right' do
+          %i.material-icons.right check
           Salvar
-          %i.material-icons.right send
